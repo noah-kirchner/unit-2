@@ -1,32 +1,57 @@
 #map {
     height: 600px;
-    width: 75%;
+    width: 100%;
     display: inline-block;
 }
 
-#panel {
-    width: 20%;
-    padding: 20px;
-    display: inline-block;
-    vertical-align: top;
+/* Sequence control container */
+.sequence-control-container {
+    width: 350px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    line-height: 30px;
     text-align: center;
-    line-height: 42px;
+    border: solid gray 1px;
+    border-radius: 4px;
 }
 
 .range-slider {
-    width: 60%;
+    width: 250px;
 }
 
 .step {
-    width: 18%;
+    width: 40px;
+    height: 30px;
 }
 
-#forward {
-    float: right;
+/* Legend control container */
+.legend-control-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 12px 20px 12px 12px;
+    border: solid gray 1px;
+    border-radius: 4px;
 }
 
-#reverse {
-    float: left;
+.temporalLegend {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.temporalLegend .year {
+    color: #E74C3C;
+    font-size: 16px;
+}
+
+/* SVG attribute legend styles */
+#attribute-legend {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.legend-circle {
+    /* No additional styles needed - defined in SVG */
 }
 
 /* Adjust popup content margins for cleaner spacing */
