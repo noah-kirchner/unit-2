@@ -1,1 +1,35 @@
-#map { height: 180px; }
+#map {
+    height: 600px;
+    width: 75%;
+    display: inline-block;
+}
+
+#panel {
+    width: 20%;
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    line-height: 42px;
+}
+
+.range-slider {
+    width: 60%;
+}
+
+.step {
+    width: 18%;
+}
+
+#forward {
+    float: right;
+}
+
+#reverse {
+    float: left;
+}
+
+/* Adjust popup content margins for cleaner spacing */
+.leaflet-popup-content p {
+    margin: 0.2em 0;
+}
