@@ -1,0 +1,65 @@
+import json
+import csv
+import re
+
+# Load existing GeoJSON
+with open('scowis_margins.geojson', 'r') as f:
+    geojson_data = json.load(f)
+
+# Read 2026 data from CSV
+results_2026 = {}
+
+with open('2026_unofficial_margins_AP.csv', 'r') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        county = row['County'].strip()
+        leader_info = row['Leader'].strip()
+        
+        # Parse "Taylor +26.3" or "Lazar +2.9"
+        # Extract candidate name and margin
+        match = re.match(r'([A-Za-z]+)\s*\+?([-\d.]+)', leader_info)
+        
+        if match:
+            candidate = match.group(1)
+            margin_value = float(match.group(2))
+            
+            # Determine sign based on candidate
+            # Taylor = Liberal (positive), Lazar = Conservative (negative)
+            if candidate == 'Taylor':
+                margin = margin_value  # Liberal wins are positive
+            elif candidate == 'Lazar':
+                margin = -margin_value  # Conservative wins are negative
+            else:
+                print(f"WARNING: Unknown candidate '{candidate}' for {county}")
+                margin = 0
+            
+            results_2026[county] = round(margin, 2)
+            print(f"{county}: {candidate} +{margin_value} → Margin: {margin}")
+        else:
+            print(f"WARNING: Could not parse leader info for {county}: {leader_info}")
+
+# Add 2026 margin to each county in GeoJSON
+counties_updated = 0
+counties_missing = []
+
+for feature in geojson_data['features']:
+    county_name = feature['properties']['County']
+    
+    if county_name in results_2026:
+        feature['properties']['Margin_2026'] = results_2026[county_name]
+        counties_updated += 1
+    else:
+        print(f"WARNING: No 2026 data found for {county_name}")
+        counties_missing.append(county_name)
+        feature['properties']['Margin_2026'] = None
+
+# Save updated GeoJSON
+with open('scowis_margins_updated.geojson', 'w') as f:
+    json.dump(geojson_data, f, indent=2)
+
+print(f"\n=== Summary ===")
+print(f"Counties updated: {counties_updated}")
+print(f"Counties missing: {len(counties_missing)}")
+if counties_missing:
+    print(f"Missing counties: {', '.join(counties_missing)}")
+print(f"\nUpdated GeoJSON saved to 'scowis_margins_updated.geojson'")

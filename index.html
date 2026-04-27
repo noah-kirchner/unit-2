@@ -3,14 +3,40 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Wisconsin Supreme Court Election Margins</title>
+    <title>Wisconsin State Supreme Court Elections: County-Level Trends in Electoral Margin (2016-2026)</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- Header Section -->
+    <header>
+        <h1>Wisconsin State Supreme Court Elections:</h1>
+        <h2>County-Level Trends in Electoral Margin (2016-2026)</h2>
+    </header>
+
+    <!-- Introduction/Context Section -->
+    <section class="intro">
+        <p>
+            For decades, judicial elections in the United States seemed isolated from the intense polarization of the political branches. An evolving, increasingly partisan, and nationalized environment, however, have jointly manifested in record-setting outside spending and an abandonment of conventional impartiality in judicial campaigns.
+        </p>
+        <p>
+            The seven (7) justices of the Wisconsin State Supreme Court are directly elected to ten (10) year terms in staggered off-cycle April elections. From 2016-2026, there were eight (8) such elections, seven (7) of which were contested, with critical implications for the court majority. The interactive map below visualizes county-level trends in margin from 2016-2026, during which liberals capitalized on a decisive advantage in voter enthusiasm and turnout statewide to solidify firm control of the bench.
+    </section>
+
+    <!-- Section Header -->
+    <h3 class="map-header">Interactive Map</h3>
+
+    <!-- Map Container -->
     <div id="map"></div>
+
+    <!-- Footer with Data Sources -->
+    <footer>
+        <p class="note"><strong>Note:</strong> 2026 Election Results are unofficial</p>
+        <p class="sources"><strong>Data Sources:</strong> Associated Press, United States Census Bureau, Wisconsin Elections Commission</p>
+        <p class="author"><strong>Author:</strong> Noah Kirchner</p>
+    </footer>
     
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
